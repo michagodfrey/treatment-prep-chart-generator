@@ -18,7 +18,7 @@
         <h1 class="display-4">Treatment Preparation Chart</h1>
         <!-- <p class="lead">PDF Generator</p> -->
         <hr class="my-4">
-        <p class="pb-3">Refer to your chemical label and complete this form go generate a pdf preparation treatment chart</p>
+        <p class="pb-3">Refer to your chemical label and complete this form to generate a pdf preparation treatment chart</p>
       </div>
     </div>
 
@@ -28,10 +28,9 @@
 
           <div class="input-group input-group-lg mb-3 pt-3">
             <span class="input-group-text">Product Trade Name</span>
-            <input id="product" type="text" class="form-control text" aria-label="Sizing example input" placeholder="e.g. 'Talstar&#x000AE;'">
+            <input id="product" type="text" class="form-control text" aria-label="Sizing example input" placeholder="e.g. 'Talstar&#x000AE;'" required>
           </div>
 
-          <div class="row">
             <div class="col-lg col-xs-1">
               <div class="input-group input-group-lg mb-3">
                 <span class="input-group-text">Active Constituent</span>
@@ -54,9 +53,7 @@
 
               </div>
             </div>
-          </div>
 
-          <div class="row">
             <div class="col-lg col-xs-1">
               <div class="input-group input-group-lg mb-3">
                 <span class="input-group-text">Rate per 10L Water</span>
@@ -74,14 +71,12 @@
               </div>
             </div>
 
-          </div>
-
           <!-- calculates the rates -->
-          <button id="calc" onclick="calculate()" type="button" class="btn btn-primary mb-5 mt-5 col-6 mx-auto d-grid gap-2">Calculate</button>
+          <button id="calc" onclick="calculate()" type="button" class="btn btn-primary mb-5 mt-5 col-6 mx-auto d-grid gap-2">Calculate Rates</button>
 
           <!-- Displays calculated rate for full tank of chemical solution -->
           <div class="input-group input-group-lg mb-5">
-            <span class="input-group-text full-tank">Concentrate in Full Tank</span>
+            <span id="product-display" class="input-group-text full-tank"></span>
             <!-- Display concentrate in full tank -->
             <div id="concentrate" class="form-control"></div>
             <span class="input-group-text grams full-tank">g</span>

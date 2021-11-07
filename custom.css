@@ -36,3 +36,7 @@
 .full-tank {
   color: blue;
 }
+
+.container {
+  max-width: 720px;
+}

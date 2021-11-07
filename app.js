@@ -1,3 +1,5 @@
+const product = document.getElementById('product');
+const productDisplay = document.getElementById('product-display');
 const grams = document.querySelectorAll('.grams');
 const mils = document.querySelectorAll('.mils');
 const btnGrams = document.getElementById('btn-grams');
@@ -46,8 +48,8 @@ function showGrams() {
 function calculate() {
   if (!btnGrams.checked && !btnMils.checked) {
     alert('Please select unit of measure - grams or mililitres');
-  } else if (rate.value === '' || volume.value === '') {
-    alert('Please complete rate and volume fields');
+  } else if (rate.value === '' || volume.value === '' || product.value === '') {
+    alert('Please ensure product, rate and volume fields are complete');
   } else {
 
       // create elements and populate table with part fill rates
@@ -75,12 +77,15 @@ function calculate() {
       conc1Q.innerHTML = res1Conc;
       vol1Q.innerHTML = res1Vol;
 
+      // display product name for full tank concentration
+      productDisplay.innerHTML = `${product.value} in full tank`;
+
   }
 }
 
 function apology() {
-  calculate();
-  alert('Thanks for completing this form! But unfortunately this is a work in progress and I have not yet added the print and save function. Try again soon.');
+
+    alert("Thanks for using this form! But unfortunately it is not finished yet. If you have feedback, please share it :)");
 }
 
 // To do: function to generate and print pdf
