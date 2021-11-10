@@ -83,28 +83,10 @@ function calculate() {
   }
 }
 
-function apology() {
+// save treatment chart as a pdf with html2pdf https://ekoopmans.github.io/html2pdf.js/#getting-started
+function generatePDF() {
+  const form = document.getElementById('form');
 
-    alert("Thanks for using this form! But unfortunately it is not finished yet. If you have feedback, please share it :)");
+  html2pdf(form);
+
 }
-
-// To do: function to generate and print pdf
-
-// const download = document.getElementById('download');
-//
-//
-// function generatePDF() {
-//   const form = document.getElementById('form');
-//
-//   // options
-//   const opt = {
-//   margin:       1,
-//   filename:     'myfile.pdf',
-//   image:        { type: 'jpeg', quality: 0.98 },
-//   html2canvas:  { scale: 2 },
-//   jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-// };
-//
-//   html2pdf().set(opt).from(form).save();
-//
-// }
