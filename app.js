@@ -1,21 +1,29 @@
+// user input values
 const product = document.getElementById('product');
 const productDisplay = document.getElementById('product-display');
+const activeConstituent = document.getElementById('act-con');
+const concentration = document.getElementById('concentration');
+const rate = document.getElementById('rate');
+const volume = document.getElementById('volume');
+const concentrateFull = document.getElementById('concentrate');
+const name = document.getElementById('creator-name');
+
+// grams and mililitres display
 const grams = document.querySelectorAll('.grams');
 const mils = document.querySelectorAll('.mils');
 const btnGrams = document.getElementById('btn-grams');
 const btnMils = document.getElementById('btn-mils');
-const rate = document.getElementById('rate');
-const volume = document.getElementById('volume');
-const concentrateFull = document.getElementById('concentrate');
+
+// part fill values
 const conc3Q = document.querySelector('.conc-3Q');
 const vol3Q = document.querySelector('.vol-3Q');
 const halfConc = document.querySelector('.conc-half');
 const halfVol = document.querySelector('.vol-half');
 const conc1Q = document.querySelector('.conc-1Q');
 const vol1Q = document.querySelector('.vol-1Q');
-const dateDisplay = document.getElementById('date');
 
 // display date. Thanks to dcode for tutorial on displaying it https://www.youtube.com/watch?v=50cDIUKlQ8g&ab_channel=dcode
+const dateDisplay = document.getElementById('date');
 const date = new Date();
 const dateFormatted = formateDate(date);
 dateDisplay.innerHTML = `${dateFormatted}`;
@@ -29,7 +37,7 @@ function formateDate(dateObject) {
   return `${parts.day}/${parts.month}/${parts.year}`;
 }
 
-// swithch unit of measure between g and mL
+// switch unit of measure between g and mL
 function showMils() {
   for (let i = 0; i < mils.length; i++) {
     mils[i].style.display = "flex";
@@ -44,7 +52,7 @@ function showGrams() {
   }
 }
 
-// populate the table and full tank concentration
+// populate the table with values
 function calculate() {
   if (!btnGrams.checked && !btnMils.checked) {
     alert('Please select unit of measure - grams or mililitres');
@@ -52,41 +60,32 @@ function calculate() {
     alert('Please ensure product, rate and volume fields are complete');
   } else {
 
-      // create elements and populate table with part fill rates
-      let resultFullTank = '';
-      let res3Conc = '';
-      let res3Vol = '';
-      let resHConc = '';
-      let resHVol = '';
-      let res1Conc = '';
-      let res1Vol = '';
-
-      resultFullTank += `${Math.ceil((rate.value * volume.value) / 10)}`;
-      res3Conc += `${Math.ceil(resultFullTank * .75)}`;
-      res3Vol += `${volume.value * .75}`;
-      resHConc += `${Math.ceil(resultFullTank * .5)}`;
-      resHVol += `${volume.value * .5}`;
-      res1Conc += `${Math.ceil(resultFullTank * .25)}`;
-      res1Vol += `${volume.value * .25}`;
-
-      concentrateFull.innerHTML = resultFullTank;
-      conc3Q.innerHTML = res3Conc;
-      vol3Q.innerHTML = res3Vol;
-      halfConc.innerHTML = resHConc;
-      halfVol.innerHTML = resHVol;
-      conc1Q.innerHTML = res1Conc;
-      vol1Q.innerHTML = res1Vol;
+      concentrateFull.innerHTML = `${Math.ceil((rate.value * volume.value) / 10)}`;
+      conc3Q.innerHTML = `${Math.ceil(concentrateFull.innerHTML * .75)}`;
+      vol3Q.innerHTML = `${volume.value * .75}`;
+      halfConc.innerHTML = `${Math.ceil(concentrateFull.innerHTML * .5)}`;
+      halfVol.innerHTML = `${volume.value * .5}`;
+      conc1Q.innerHTML = `${Math.ceil(concentrateFull.innerHTML * .25)}`;
+      vol1Q.innerHTML = `${volume.value * .25}`;
 
       // display product name for full tank concentration
       productDisplay.innerHTML = `${product.value} in full tank`;
+
+      // Append to table for pdf
+      document.getElementById('prod-print').innerHTML = product.value;
+      document.getElementById('ac-print').innerHTML = activeConstituent.value;
+      document.getElementById('conc-print').innerHTML = concentration.value;
+      document.querySelector('.full-ac').innerHTML = concentrateFull.innerHTML;
+      document.querySelector('.full-vol').innerHTML = volume.value;
+      document.getElementById('display-creator-name').innerHTML = name.value;
 
   }
 }
 
 // save treatment chart as a pdf with html2pdf https://ekoopmans.github.io/html2pdf.js/#getting-started
 function generatePDF() {
-  const form = document.getElementById('form');
 
-  html2pdf(form);
+  const table = document.getElementById('PDF');
+  html2pdf(table);
 
 }
