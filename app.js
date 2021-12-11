@@ -84,7 +84,7 @@ function calculate() {
 
 // save treatment chart as a pdf with html2pdf https://ekoopmans.github.io/html2pdf.js/#getting-started
 function generatePDF() {
-
+  // todo: allow user to change file name
   const table = document.getElementById('PDF');
   html2pdf(table);
 
