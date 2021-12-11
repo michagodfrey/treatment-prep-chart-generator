@@ -1,21 +1,28 @@
+// user input fields
 const product = document.getElementById('product');
-const productDisplay = document.getElementById('product-display');
+const activeCon = document.getElementById('active-con');
+const concentration = document.getElementById('concentration');
+const rate = document.getElementById('rate');
+const volume = document.getElementById('volume');
+const name = document.getElementById('name');
+// switch between grams and mililitres display
 const grams = document.querySelectorAll('.grams');
 const mils = document.querySelectorAll('.mils');
 const btnGrams = document.getElementById('btn-grams');
 const btnMils = document.getElementById('btn-mils');
-const rate = document.getElementById('rate');
-const volume = document.getElementById('volume');
+// full volume rate
+const productDisplay = document.getElementById('product-display');
 const concentrateFull = document.getElementById('concentrate');
+// part fill rates
 const conc3Q = document.querySelector('.conc-3Q');
 const vol3Q = document.querySelector('.vol-3Q');
 const halfConc = document.querySelector('.conc-half');
 const halfVol = document.querySelector('.vol-half');
 const conc1Q = document.querySelector('.conc-1Q');
 const vol1Q = document.querySelector('.vol-1Q');
-const dateDisplay = document.getElementById('date');
 
 // display date. Thanks to dcode for tutorial on displaying it https://www.youtube.com/watch?v=50cDIUKlQ8g&ab_channel=dcode
+const dateDisplay = document.getElementById('date');
 const date = new Date();
 const dateFormatted = formateDate(date);
 dateDisplay.innerHTML = `${dateFormatted}`;
@@ -51,60 +58,33 @@ function calculate() {
   } else if (rate.value === '' || volume.value === '' || product.value === '') {
     alert('Please ensure product, rate and volume fields are complete');
   } else {
-
-      // create elements and populate table with part fill rates
-      let resultFullTank = '';
-      let res3Conc = '';
-      let res3Vol = '';
-      let resHConc = '';
-      let resHVol = '';
-      let res1Conc = '';
-      let res1Vol = '';
-
-      resultFullTank += `${Math.ceil((rate.value * volume.value) / 10)}`;
-      res3Conc += `${Math.ceil(resultFullTank * .75)}`;
-      res3Vol += `${volume.value * .75}`;
-      resHConc += `${Math.ceil(resultFullTank * .5)}`;
-      resHVol += `${volume.value * .5}`;
-      res1Conc += `${Math.ceil(resultFullTank * .25)}`;
-      res1Vol += `${volume.value * .25}`;
-
-      concentrateFull.innerHTML = resultFullTank;
-      conc3Q.innerHTML = res3Conc;
-      vol3Q.innerHTML = res3Vol;
-      halfConc.innerHTML = resHConc;
-      halfVol.innerHTML = resHVol;
-      conc1Q.innerHTML = res1Conc;
-      vol1Q.innerHTML = res1Vol;
-
-      // display product name for full tank concentration
+      // calculate full tank rate
+      let resultFullTank = `${Math.ceil((rate.value * volume.value) / 10)}`;
+      
+      // display product name and rate for full tank concentration
       productDisplay.innerHTML = `${product.value} in full tank`;
+      concentrateFull.innerHTML = resultFullTank;
 
+      // display product values in table
+      document.getElementById('print-prod').innerHTML = product.value;
+      document.getElementById('print-ac').innerHTML = activeCon.value;
+      document.getElementById('print-conc').innerHTML = concentration.value;
+      document.getElementById('print-name').innerHTML = name.value;
+
+      // display fill values
+      document.getElementById('print-rate').innerHTML = resultFullTank;
+      document.getElementById('print-volume').innerHTML = volume.value;
+      conc3Q.innerHTML = `${Math.ceil(resultFullTank * .75)}`;
+      vol3Q.innerHTML = `${volume.value * .75}`;
+      halfConc.innerHTML = `${Math.ceil(resultFullTank * .5)}`;
+      halfVol.innerHTML = `${volume.value * .5}`;
+      conc1Q.innerHTML = `${Math.ceil(resultFullTank * .25)}`;
+      vol1Q.innerHTML = `${volume.value * .25}`;
   }
 }
 
-function apology() {
-
-    alert("Thanks for using this form! But unfortunately it is not finished yet. If you have feedback, please share it :)");
+// save treatment chart as a pdf with html2pdf https://ekoopmans.github.io/html2pdf.js/#getting-started
+function generatePDF() {
+  const pdf = document.getElementById('PDF');
+  html2pdf(pdf);
 }
-
-// To do: function to generate and print pdf
-
-// const download = document.getElementById('download');
-//
-//
-// function generatePDF() {
-//   const form = document.getElementById('form');
-//
-//   // options
-//   const opt = {
-//   margin:       1,
-//   filename:     'myfile.pdf',
-//   image:        { type: 'jpeg', quality: 0.98 },
-//   html2canvas:  { scale: 2 },
-//   jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-// };
-//
-//   html2pdf().set(opt).from(form).save();
-//
-// }

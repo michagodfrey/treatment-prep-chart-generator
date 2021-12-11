@@ -42,8 +42,11 @@
 }
 
 #PDF {
+  padding: 50px;
+}
+
+table {
   border: 1px solid;
-  padding: 20px;
   margin-bottom: 40px;
   text-align: center;
 }
