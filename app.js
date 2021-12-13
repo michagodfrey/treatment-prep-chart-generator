@@ -45,6 +45,7 @@ function showMils() {
   }
 }
 
+
 function showGrams() {
   for (let i = 0; i < grams.length; i++) {
     grams[i].style.display = 'flex';

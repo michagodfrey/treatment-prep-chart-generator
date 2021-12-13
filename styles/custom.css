@@ -48,9 +48,26 @@
   text-align: center;
 }
 
-tr, th, td {
-  padding: 10px;
-  border: 1px solid;
+table {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 }
 
-/* here is a comment I made to push the file to github */
+tr, th, td {
+  padding: 10px;
+  width: 40%;
+}
+
+.table-header {
+  background-color: lightgrey;
+}
+
+.conc {
+  text-align: right;
+}
+
+.line {
+  border-top: 1px solid;
+}

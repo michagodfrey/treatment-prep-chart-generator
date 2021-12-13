@@ -21,7 +21,8 @@
     </div>
 
     <!-- start container -->
-    <div id="form" class="container">
+    <div class="container">
+
       <form action="index.html">
 
           <div class="input-group input-group-lg mb-3 pt-3">
@@ -102,11 +103,11 @@
 
           <tr>
             <th class="print"><h4>Product</h4></th>
-            <th class="print"><h4>Active Consituent</h4></th>
+            <th class="print"><h4>Active Ingredient</h4></th>
             <th class="print" colspan="3"><h4>Concentration</h4></th>
             <!-- <th class="print">g/mL</th> -->
           </tr>
-          <tr>
+          <tr class="table-header">
             <td class="print" id="prod-print"></td>
             <td class="print" id="ac-print"></td>
             <td class="print" id="conc-print" colspan="2"></td>
@@ -117,15 +118,8 @@
           </tr>
 
           <tr>
-            <td><h5>Volume</h5></td>
-            <td><h5>Product added</h5></td>
-            <td><h5>g/mL</h5></td>
-            <td colspan="2"><h5>Litres water</h5></td>
-          </tr>
-
-          <tr>
             <th>Full tank</th>
-            <td class="full-ac"></td>
+            <td class="full-ac conc"></td>
             <th>
               <span class="grams">g/</span>
               <span class="mils">mL/</span>
@@ -133,10 +127,9 @@
             <td class="full-vol"></td>
             <th>Litres</th>
           </tr>
-
-          <tr>
+          <tr class="line">
             <th>3/4 Full</th>
-            <td class="conc-3Q"></td>
+            <td class="conc-3Q conc"></td>
             <th>
               <span class="grams">g/</span>
               <span class="mils">mL/</span>
@@ -144,9 +137,9 @@
             <td class="vol-3Q"></td>
             <th>Litres</th>
           </tr>
-          <tr>
+          <tr class="line">
             <th>1/2 Full</th>
-            <td class="conc-half"></td>
+            <td class="conc-half conc"></td>
             <th>
               <span class="grams">g/</span>
               <span class="mils">mL/</span>
@@ -154,9 +147,9 @@
             <td class="vol-half"></td>
             <th>Litres</th>
           </tr>
-          <tr class="mb-3">
+          <tr class="line">
             <th>1/4 Full</th>
-            <td class="conc-1Q"></td>
+            <td class="conc-1Q conc"></td>
             <th>
               <span class="grams">g/</span>
               <span class="mils">mL/</span>
@@ -165,7 +158,7 @@
             <th>Litres</th>
           </tr>
 
-          <tr>
+          <tr class="line">
             <td>Created by: </td>
             <td id="display-creator-name"></td>
             <td id="date" colspan="4"></td>
